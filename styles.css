@@ -131,3 +131,67 @@ input[type="number"]:focus {
         font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
     }
 }
+/* Modo Nocturno */
+body.dark-mode {
+    background: #333;
+    color: #fff;
+}
+
+.dark-mode main {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode main:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode h1, .dark-mode h2 {
+    color: #fff;
+}
+
+.dark-mode button {
+    background-color: #777;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode button:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.dark-mode button:active {
+    transform: scale(0.95);
+}
+
+.dark-mode input[type="number"] {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-color: #fff;
+}
+
+.dark-mode input[type="number"]:focus {
+    border-color: #4CAF50;
+    box-shadow:0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode #balance {
+    color: #fff;
+}
+
+.dark-mode #transactions {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode #view-all-transactions, .dark-mode #hide-transactions {
+    background-color: #777;
+    color: #fff;
+}
+
+.dark-mode #all-transactions {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode #delete-all-transactions {
+    color: #fff;
+}
