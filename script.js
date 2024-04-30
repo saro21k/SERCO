@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addTransaction(amount, type) {
-        transactions.push({ amount, type });
+        transactions.unshift({ amount, type }); // Agrega la transacción al principio del array
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
 
-            tableBody.insertBefore(tr, tableBody.firstChild);
+            tableBody.appendChild(tr); // Agrega la fila al final del tbody
             allTransactionList.appendChild(tr.cloneNode(true));
         });
 
