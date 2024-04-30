@@ -1,22 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     let balance = parseFloat(localStorage.getItem('balance')) || 0;
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
     const balanceDisplay = document.getElementById('balance');
     const transactionList = document.getElementById('transaction-list');
-    const allTransactionsList = document.getElementById('all-transactions');
+    const allTransactionList = document.getElementById('all-transaction-list');
     const budgetInput = document.getElementById('budget');
     const goalInput = document.getElementById('goal');
 
     function updateBalance(amount) {
         balance += amount;
-        balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO');
+        balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
         localStorage.setItem('balance', balance);
     }
 
     function addTransaction(amount, type) {
-        const transactionItem = document.createElement('li');
-        transactionItem.textContent = type + ': ' + amount.toLocaleString('es-CO');
-        transactions.push({ amount, type }); // Agregar nueva transacción al array
+        transactions.push({ amount, type });
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -43,31 +42,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderTransactions() {
         transactionList.innerHTML = '';
-        allTransactionsList.innerHTML = '';
+        allTransactionList.innerHTML = '';
 
-        const recentTransactions = transactions.slice(-10); // Obtener las últimas 10 transacciones
+        transactions.forEach(transaction => {
+            const tr = document.createElement('tr');
+            const tdType = document.createElement('td');
+            const tdAmount = document.createElement('td');
 
-        recentTransactions.forEach(transaction => {
-            addTransactionElement(transaction.amount, transaction.type, transactionList);
+            tdType.textContent = transaction.type;
+            tdAmount.textContent = transaction.amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+
+            tr.appendChild(tdType);
+            tr.appendChild(tdAmount);
+
+            transactionList.appendChild(tr);
+            allTransactionList.appendChild(tr.cloneNode(true));
         });
-
-        transactions.slice(0, -10).forEach(transaction => {
-            addTransactionElement(transaction.amount, transaction.type, allTransactionsList);
-        });
-    }
-
-    function addTransactionElement(amount, type, list) {
-        const transactionItem = document.createElement('li');
-        transactionItem.textContent = type + ': ' + amount.toLocaleString('es-CO');
-        list.appendChild(transactionItem);
     }
 
     function deleteAllTransactions() {
         localStorage.removeItem('transactions');
-        localStorage.removeItem('balance'); // Eliminar el balance del almacenamiento local
+        localStorage.removeItem('balance');
         transactions = [];
-        balance = 0; // Actualizar el balance a cero
-        balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO');
+        balance = 0;
+        balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
         renderTransactions();
         alert('Todas las transacciones y el balance han sido eliminados.');
     }
@@ -84,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const amount = parseFloat(document.getElementById('amount').value);
         if (!isNaN(amount) && amount > 0) {
             updateBalance(-amount);
-            addTransaction(amount, 'Egreso');
+            addTransaction(-amount, 'Egreso');
         }
     });
 
@@ -93,13 +91,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('update-goal').addEventListener('click', updateGoal);
 
     document.getElementById('view-all-transactions').addEventListener('click', function() {
-        allTransactionsList.style.display = 'block';
+        document.getElementById('all-transactions').style.display = 'table';
+        document.getElementById('transaction-list').style.display = 'none';
         document.getElementById('view-all-transactions').style.display = 'none';
         document.getElementById('hide-transactions').style.display = 'inline-block';
     });
 
     document.getElementById('hide-transactions').addEventListener('click', function() {
-        allTransactionsList.style.display = 'none';
+        document.getElementById('all-transactions').style.display = 'none';
+        document.getElementById('transaction-list').style.display = 'table';
         document.getElementById('hide-transactions').style.display = 'none';
         document.getElementById('view-all-transactions').style.display = 'inline-block';
     });
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
 
     // Initialize UI
-    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO');
+    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
     renderTransactions();
     const savedBudget = parseFloat(localStorage.getItem('budget')) || 0;
     const savedGoal = parseFloat(localStorage.getItem('goal')) || 0;
