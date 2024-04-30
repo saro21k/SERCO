@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('transaction-list').style.display = 'none';
         document.getElementById('view-all-transactions').style.display = 'none';
         document.getElementById('hide-transactions').style.display = 'inline-block';
+
+        // Agregar atributo stylea la tabla #all-transactions
+        allTransactionList.setAttribute('style', 'min-width: 200px;');
     });
 
     document.getElementById('hide-transactions').addEventListener('click', function() {
@@ -102,9 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('transaction-list').style.display = 'table';
         document.getElementById('hide-transactions').style.display = 'none';
         document.getElementById('view-all-transactions').style.display = 'inline-block';
-    });
 
-    document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
+        // Eliminar atributo style de la tabla #all-transactions
+        allTransactionList.removeAttribute('style');
+    });
 
     // Initialize UI
     balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
