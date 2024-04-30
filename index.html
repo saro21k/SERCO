@@ -2,255 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aplicación de contabilidad personal">
-    <meta name="keywords" content="contabilidad, personal, aplicación, web">
-    <meta name="author" content="Tu nombre">
-    <meta name="created" content="Fecha de creación">
-    <meta name="modified" content="Fecha de última modificación">
-    <meta name="version" content="Versión 1.0">
-    <meta name="language" content="es">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="msapplication-config" content="/images/icons/browserconfig.xml">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/touch-icon-iphone.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000">
     <title>Contabilidad Personal</title>
-    <style>
-        :root {
-            --primary-color: #000;
-            --secondary-color: #fff;
-            --background-color: #f5f5f5;
-            --border-color: #ddd;
-            --text-color: #333;
-            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease-in-out;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: var(--box-shadow);
-            border-radius: 5px;
-            background-color: var(--secondary-color);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        section {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        button:hover {
-            background-color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        li:last-child {
-            border-bottom: none;
-        }
-        .hide {
-           display: none;
-        }
-        @media (max-width: 600px) {
-            .container {
-                width: 100%;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            label, input[type="number"], button {
-                width: 100%;
-            }
-        }
-    </style>
-    <script>
-        const balanceEl = document.getElementById('balance');
-        const budgetEl = document.getElementById('budget');
-        const goalEl = document.getElementById('goal');
-        const transactionListEl = document.getElementById('transaction-list');
-        const allTransactionsEl = document.getElementById('all-transactions');
-        const viewAllTransactionsEl = document.getElementById('view-all-transactions');
-        const hideTransactionsEl = document.getElementById('hide-transactions');
-        const deleteAllTransactionsEl = document.getElementById('delete-all-transactions');
-
-        let transactions = [];
-
-        function addTransaction(amount, type) {
-            const transaction = {
-                id: Date.now(),
-                amount,
-                type
-            };
-            transactions.push(transaction);
-            updateBalance();
-            updateTransactionList();
-        }
-
-        function updateBalance() {
-            let total = 0;
-            transactions.forEach(transaction => {
-                if (transaction.type === 'income') {
-                    total += transaction.amount;
-                } else {
-                    total -= transaction.amount;
-                }
-            });
-            balanceEl.textContent = `Balance: ${total} COP`;
-        }
-
-        function updateTransactionList() {
-            transactionListEl.innerHTML = '';
-            allTransactionsEl.innerHTML = '';
-            transactions.forEach(transaction => {
-                const li = document.createElement('li');
-                li.textContent = `${transaction.amount} COP - ${transaction.type}`;
-                li.dataset.id = transaction.id;
-                if (transaction.type === 'income') {
-                    li.style.color = 'green';
-                } else {
-                    li.style.color = 'red';
-                }
-                const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = 'Eliminar';
-                deleteBtn.addEventListener('click', () => deleteTransaction(transaction.id));
-                li.appendChild(deleteBtn);
-                transactionListEl.appendChild(li);
-                allTransactionsEl.appendChild(li);
-            });
-            toggleTransactionList();
-        }
-
-        function deleteTransaction(id) {
-            transactions = transactions.filter(transaction => transaction.id !== id);
-            updateBalance();
-            updateTransactionList();
-        }
-
-        function toggleTransactionList() {
-            viewAllTransactionsEl.classList.toggle('hide');
-            hideTransactionsEl.classList.toggle('hide');
-            allTransactionsEl.classList.toggle('hide');
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const amount = parseFloat(document.getElementById('amount').value);
-            const type = document.querySelector('input[name="type"]:checked').value;
-            if (!isNaN(amount)) {
-                addTransaction(amount, type);
-                document.getElementById('amount-form').reset();
-            }
-        }
-
-        function init() {
-            document.getElementById('amount-form').addEventListener('submit', handleFormSubmit);
-            document.getElementById('view-all-transactions').addEventListener('click', toggleTransactionList);
-            document.getElementById('hide-transactions').addEventListener('click', toggleTransactionList);
-            document.getElementById('delete-all-transactions').addEventListener('click', () => {
-                transactions = [];
-                updateBalance();
-                updateTransactionList();
-            });
-        }
-
-        init();
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 id="balance">Balance: 0 COP</h1>
-        </header>
-
-        <section id="budget-section">
-            <h2>Presupuesto</h2>
-            <div id="budget-control">
-                <label for="budget">Presupuesto:</label>
-                <input type="number" id="budget" placeholder="Ingrese el presupuesto">
-                <button id="update-budget">Actualizar Presupuesto</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Contabilidad Personal</a>
+    </nav>
+    <main class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 id="balance" class="text-center">Balance: 0 COP</h1>
             </div>
-        </section>
+        </div>
 
-        <section id="goal-section">
-            <h2>Meta de Dinero</h2>
-            <div id="goal-control">
-                <label for="goal">Meta de Dinero:</label>
-                <input type="number" id="goal" placeholder="Ingrese la meta">
-                <button id="update-goal">Actualizar Meta</button>
-            </div>
-        </section>
-
-        <section id="transaction-section">
-            <h2>Control de Transacciones</h2>
-            <form id="amount-form">
-                <label for="amount">Cantidad:</label>
-                <input type="number" id="amount" placeholder="Ingrese la cantidad">
-                <div>
-                    <label for="income">Ingreso</label>
-                    <input type="radio" id="income" name="type" value="income" checked>
-                    <label for="expense">Egreso</label>
-                    <input type="radio" id="expense" name="type" value="expense">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div id="budget-control" class="form-group">
+                    <label for="budget">Presupuesto:</label>
+                    <input type="number" id="budget" placeholder="Ingrese el presupuesto" class="form-control">
+                    <button id="update-budget" class="btn btn-primary">Actualizar Presupuesto</button>
                 </div>
-                <button type="submit">Añadir</button>
-            </form>
-
-            <div id="transactions">
-                <h3>Últimas 10 Transacciones</h3>
-                <ul id="transaction-list"></ul>
-                <button id="view-all-transactions" class="hide">Ver Todas las Transacciones</button>
-                <button id="hide-transactions" class="hide">Ocultar Transacciones</button>
-                <ul id="all-transactions" class="hide"></ul>
             </div>
-
-            <div id="delete-transactions">
-                <button id="delete-all-transactions">Eliminar Todas las Transacciones</button>
+            <div class="col-12 col-md-6">
+                <div id="goal-control" class="form-group">
+                    <label for="goal">Meta de Dinero:</label>
+                    <input type="number" id="goal" placeholder="Ingrese la meta" class="form-control">
+                    <button id="update-goal" class="btn btn-primary">Actualizar Meta</button>
+                </div>
             </div>
-        </section>
-    </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Control de Transacciones</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div id="controls" class="form-group">
+                    <label for="amount">Cantidad:</label>
+                    <input type="number" id="amount" placeholder="Ingrese la cantidad" class="form-control">
+                    <button id="add-income" class="btn btn-success">Ingreso</button>
+                    <button id="add-expense" class="btn btn-danger">Egreso</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div id="transactions">
+                    <h3 class="text-center">Últimas 10 Transacciones</h3>
+                    <ul id="transaction-list" class="list-group"></ul>
+                    <button id="view-all-transactions" class="btn btn-primary">Ver Todas las Transacciones</button>
+                    <button id="hide-transactions" class="btn btn-secondary" style="display: none;">Ocultar Transacciones</button>
+                    <ul id="all-transactions" class="list-group" style="display: none;"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div id="delete-transactions">
+                    <button id="delete-all-transactions" class="btn btn-danger">Eliminar Todas las Transacciones</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
