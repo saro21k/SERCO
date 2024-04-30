@@ -1,23 +1,25 @@
 body {
-    background-color: #000;
-    color: #ffd700; /* Dorado */
-    font-family: 'Roboto', sans-serif; /* Cambiar a la fuente Roboto */
-    padding: 10px;
-    transition: background-color 0.3s; /* Agregar animación */
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(144, 238, 144, 1) 0%, rgba(100, 200, 100, 1) 100%);
+    /* Fondo degradado verde claro */
+    color: #333; /* Texto negro */
+    font-family: 'Montserrat', sans-serif; /* Fuente Montserrat */
     padding: 20px;
-    border-radius: 20px; /* Bordes redondeados */
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.5), rgba(57, 61, 58, 0.8)); /* Fondo verde con degradado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
-    transition: box-shadow 0.3s; /* Agregar animación */
+    transition: background-color 0.3s; /* Animación de fondo */
 }
 
-.container:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    transition: box-shadow 0.3s; /* Animación de sombra */
+}
+
+main:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Animación de sombra al pasar el mouse */
 }
 
 /* Título principal
@@ -40,8 +42,8 @@ h1, h2 {
 /* Botones
 ----------------------------------------------------------------------------------------------------------------------------------*/
 button {
-    background-color: rgb(23, 207, 23); /* Verde */
-    color: #000000; /* negro */
+    background-color: #4CAF50; /* Verde */
+    color: #fff; /* Blanco */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -67,15 +69,15 @@ button:active {
 input[type="number"] {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #ffd700; /* Dorado */
-    background-color: rgba(255, 255, 255, 0.5); /* Blanco con transparencia */
+    border: 1px solid #333; /* Bordes negros */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
     transition: border-color 0.3s; /* Agregar animación */
 }
 
 input[type="number"]:focus {
     outline: none;
-    border-color: #fff; /* Blanco al enfocar */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave al enfocar */
+    border-color: #4CAF50; /* Verde al enfocar */
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave al enfocar */
 }
 
 /* Balance
@@ -117,11 +119,15 @@ input[type="number"]:focus {
 /* Media queries
 ----------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 768px) {
-   .container {
-        max-width: 90%;
+    body {
+        padding: 10px;
     }
 
-    h1, h2 {
+    main {
+        padding: 10px;
+    }
+
+   h1, h2 {
         font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
     }
 }
