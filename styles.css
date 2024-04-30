@@ -131,6 +131,7 @@ input[type="number"]:focus {
         font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
     }
 }
+
 /* Modo Nocturno */
 body.dark-mode {
     background: #333;
@@ -194,4 +195,4 @@ body.dark-mode {
 
 .dark-mode #delete-all-transactions {
     color: #fff;
-}
+    }
