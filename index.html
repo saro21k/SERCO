@@ -94,7 +94,7 @@
             border-bottom: none;
         }
         .hide {
-            display: none;
+           display: none;
         }
         @media (max-width: 600px) {
             .container {
@@ -109,7 +109,96 @@
         }
     </style>
     <script>
-        // Aquí va tu código JavaScript
+        const balanceEl = document.getElementById('balance');
+        const budgetEl = document.getElementById('budget');
+        const goalEl = document.getElementById('goal');
+        const transactionListEl = document.getElementById('transaction-list');
+        const allTransactionsEl = document.getElementById('all-transactions');
+        const viewAllTransactionsEl = document.getElementById('view-all-transactions');
+        const hideTransactionsEl = document.getElementById('hide-transactions');
+        const deleteAllTransactionsEl = document.getElementById('delete-all-transactions');
+
+        let transactions = [];
+
+        function addTransaction(amount, type) {
+            const transaction = {
+                id: Date.now(),
+                amount,
+                type
+            };
+            transactions.push(transaction);
+            updateBalance();
+            updateTransactionList();
+        }
+
+        function updateBalance() {
+            let total = 0;
+            transactions.forEach(transaction => {
+                if (transaction.type === 'income') {
+                    total += transaction.amount;
+                } else {
+                    total -= transaction.amount;
+                }
+            });
+            balanceEl.textContent = `Balance: ${total} COP`;
+        }
+
+        function updateTransactionList() {
+            transactionListEl.innerHTML = '';
+            allTransactionsEl.innerHTML = '';
+            transactions.forEach(transaction => {
+                const li = document.createElement('li');
+                li.textContent = `${transaction.amount} COP - ${transaction.type}`;
+                li.dataset.id = transaction.id;
+                if (transaction.type === 'income') {
+                    li.style.color = 'green';
+                } else {
+                    li.style.color = 'red';
+                }
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Eliminar';
+                deleteBtn.addEventListener('click', () => deleteTransaction(transaction.id));
+                li.appendChild(deleteBtn);
+                transactionListEl.appendChild(li);
+                allTransactionsEl.appendChild(li);
+            });
+            toggleTransactionList();
+        }
+
+        function deleteTransaction(id) {
+            transactions = transactions.filter(transaction => transaction.id !== id);
+            updateBalance();
+            updateTransactionList();
+        }
+
+        function toggleTransactionList() {
+            viewAllTransactionsEl.classList.toggle('hide');
+            hideTransactionsEl.classList.toggle('hide');
+            allTransactionsEl.classList.toggle('hide');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const amount = parseFloat(document.getElementById('amount').value);
+            const type = document.querySelector('input[name="type"]:checked').value;
+            if (!isNaN(amount)) {
+                addTransaction(amount, type);
+                document.getElementById('amount-form').reset();
+            }
+        }
+
+        function init() {
+            document.getElementById('amount-form').addEventListener('submit', handleFormSubmit);
+            document.getElementById('view-all-transactions').addEventListener('click', toggleTransactionList);
+            document.getElementById('hide-transactions').addEventListener('click', toggleTransactionList);
+            document.getElementById('delete-all-transactions').addEventListener('click', () => {
+                transactions = [];
+                updateBalance();
+                updateTransactionList();
+            });
+        }
+
+        init();
     </script>
 </head>
 <body>
@@ -138,12 +227,17 @@
 
         <section id="transaction-section">
             <h2>Control de Transacciones</h2>
-            <div id="controls">
+            <form id="amount-form">
                 <label for="amount">Cantidad:</label>
                 <input type="number" id="amount" placeholder="Ingrese la cantidad">
-                <button id="add-income">Ingreso</button>
-                <button id="add-expense">Egreso</button>
-            </div>
+                <div>
+                    <label for="income">Ingreso</label>
+                    <input type="radio" id="income" name="type" value="income" checked>
+                    <label for="expense">Egreso</label>
+                    <input type="radio" id="expense" name="type" value="expense">
+                </div>
+                <button type="submit">Añadir</button>
+            </form>
 
             <div id="transactions">
                 <h3>Últimas 10 Transacciones</h3>
