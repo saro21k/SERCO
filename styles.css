@@ -1,23 +1,24 @@
 body {
-    background-color: #000;
-    color: #ffd700; /* Dorado */
-    font-family: 'Roboto', sans-serif; /* Cambiar a la fuente Roboto */
-    padding: 10px;
-    transition: background-color 0.3s; /* Agregar animación */
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
+    background-color: #212121; /* Fondo oscuro */
+    color: #fff; /* Blanco */
+    font-family: 'Montserrat', sans-serif; /* Fuente Montserrat */
     padding: 20px;
-    border-radius: 20px; /* Bordes redondeados */
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.5), rgba(57, 61, 58, 0.8)); /* Fondo verde con degradado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
-    transition: box-shadow 0.3s; /* Agregar animación */
+    transition: background-color 0.3s; /* Animación de fondo */
 }
 
-.container:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #333; /* Fondo gris oscuro */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+transition: box-shadow 0.3s; /* Animación de sombra */
+}
+
+main:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Animación de sombra al pasar el mouse */
 }
 
 /* Título principal
@@ -40,8 +41,8 @@ h1, h2 {
 /* Botones
 ----------------------------------------------------------------------------------------------------------------------------------*/
 button {
-    background-color: rgb(23, 207, 23); /* Verde */
-    color: #000000; /* negro */
+    background-color: #4CAF50; /* Verde */
+    color: #fff; /* Blanco */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -67,7 +68,7 @@ button:active {
 input[type="number"] {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #ffd700; /* Dorado */
+    border: 1px solid #fff; /* Blanco */
     background-color: rgba(255, 255, 255, 0.5); /* Blanco con transparencia */
     transition: border-color 0.3s; /* Agregar animación */
 }
@@ -117,7 +118,7 @@ input[type="number"]:focus {
 /* Media queries
 ----------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 768px) {
-   .container {
+   main {
         max-width: 90%;
     }
 
