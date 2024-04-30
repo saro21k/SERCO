@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación de contabilidad personal">
+    <meta name="keywords" content="contabilidad, personal, aplicación, web">
+    <meta name="author" content="Tu nombre">
+    <meta name="created" content="Fecha de creación">
+    <meta name="modified" content="Fecha de última modificación">
+    <meta name="version" content="Versión 1.0">
+    <meta name="language" content="es">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="device-width" content="800">
+    <meta name="device-height" content="600">
+    <meta name="pixel-density" content="1">
+    <meta name="aspect-ratio" content="4:3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-config" content="/images/icons/browserconfig.xml">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Contabilidad Personal">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/icons/touch-icon-ipad-retina.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/images/icons/safari-pinned-tab.svg" color="#ffd700">
+    <link rel="shortcut icon" href="/images/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffd700">
+    <meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/icons/browserconfig.xml">
+    <title>Contabilidad Personal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="balance">Balance: 0 COP</h1>
+        </header>
+
+        <section id="budget-section">
+            <div class="row">
+                <div class="col-6">
+                    <div id="budget-control">
+                        <label for="budget">Presupuesto:</label>
+                        <input type="number" id="budget" placeholder="Ingrese el presupuesto">
+                        <button id="update-budget">Actualizar Presupuesto</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div id="goal-control">
+                        <label for="goal">Meta de Dinero:</label>
+                        <input type="number" id="goal" placeholder="Ingrese la meta">
+                        <button id="update-goal">Actualizar Meta</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transaction-section">
+            <h2>Control de Transacciones</h2>
+            <div id="controls">
+                <label for="amount">Cantidad:</label>
+                <input type="number" id="amount" placeholder="Ingrese la cantidad">
+                <button id="add-income">Ingreso</button>
+                <button id="add-expense">Egreso</button>
+            </div>
+
+            <div id="transactions">
+                <h3>Últimas 10 Transacciones</h3>
+                <ul id="transaction-list"></ul>
+                <button id="view-all-transactions">Ver Todas las Transacciones</button>
+                <button id="hide-transactions" style="display: none;">Ocultar Transacciones</button>
+                <ul id="all-transactions" style="display: none;"></ul>
+            </div>
+
+            <div id="delete-transactions">
+                <button id="delete-all-transactions">Eliminar Todas las Transacciones</button>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
