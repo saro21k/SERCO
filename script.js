@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
         transactionList.innerHTML = '';
         allTransactionList.innerHTML = '';
 
+        const tableBody = document.createElement('tbody');
+        tableBody.id = 'transaction-table-body';
+
         transactions.forEach(transaction => {
             const tr = document.createElement('tr');
             const tdType = document.createElement('td');
@@ -55,9 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
 
-            transactionList.appendChild(tr);
+            tableBody.insertBefore(tr, tableBody.firstChild);
             allTransactionList.appendChild(tr.cloneNode(true));
         });
+
+        transactionList.appendChild(tableBody);
     }
 
     function deleteAllTransactions() {
@@ -96,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('view-all-transactions').style.display = 'none';
         document.getElementById('hide-transactions').style.display = 'inline-block';
 
-        // Agregar atributo stylea la tabla #all-transactions
+        // Agregar atributo style a la tabla #all-transactions
         allTransactionList.setAttribute('style', 'min-width: 200px;');
     });
 
