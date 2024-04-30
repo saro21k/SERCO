@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addTransaction(amount, type) {
-        transactions.unshift({ amount, type }); // Agrega la transacción al principio del array
+        transactions.push({ amount, type });
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateGoal() {
-const goal = parseFloat(goalInput.value);
+        const goal = parseFloat(goalInput.value);
         if (!isNaN(goal) && goal >= 0) {
             localStorage.setItem('goal', goal);
             alert('Meta de dinero actualizada');
@@ -58,7 +58,7 @@ const goal = parseFloat(goalInput.value);
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
 
-            tableBody.appendChild(tr); // Agrega la fila al final del tbody
+            tableBody.insertBefore(tr, tableBody.firstChild);
             allTransactionList.appendChild(tr.cloneNode(true));
         });
 
@@ -91,9 +91,21 @@ const goal = parseFloat(goalInput.value);
         }
     });
 
-    document.getElementById('delete-all-transactions').addEventListener('touchstart', deleteAllTransactions);
+    document.getElementById('update-budget').addEventListener('click', updateBudget);
 
-    document.getElementById('hide-transactions').addEventListener('touchstart', function() {
+    document.getElementById('update-goal').addEventListener('click', updateGoal);
+
+    document.getElementById('view-all-transactions').addEventListener('click', function() {
+        document.getElementById('all-transactions').style.display = 'table';
+        document.getElementById('transaction-list').style.display = 'none';
+        document.getElementById('view-all-transactions').style.display = 'none';
+        document.getElementById('hide-transactions').style.display = 'inline-block';
+
+        // Agregar atributo style a la tabla #all-transactions
+        allTransactionList.setAttribute('style', 'min-width: 200px;');
+    });
+
+    document.getElementById('hide-transactions').addEventListener('click', function() {
         document.getElementById('all-transactions').style.display = 'none';
         document.getElementById('transaction-list').style.display = 'table';
         document.getElementById('hide-transactions').style.display = 'none';
