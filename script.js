@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const allTransactionList = document.getElementById('all-transaction-list');
     const budgetInput = document.getElementById('budget');
     const goalInput = document.getElementById('goal');
+    const descriptionInput = document.getElementById('description');
 
     function updateBalance(amount) {
         balance += amount;
@@ -14,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('balance', balance);
     }
 
-    function addTransaction(amount, type) {
-        transactions.push({ amount, type });
+    function addTransaction(amount, type, description) {
+        transactions.push({ amount, type, description });
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -51,12 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const tr = document.createElement('tr');
             const tdType = document.createElement('td');
             const tdAmount = document.createElement('td');
+            const tdDescription = document.createElement('td');
 
             tdType.textContent = transaction.type;
             tdAmount.textContent = transaction.amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+            tdDescription.textContent = transaction.description;
 
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
+            tr.appendChild(tdDescription);
 
             tableBody.insertBefore(tr, tableBody.firstChild);
             allTransactionList.appendChild(tr.cloneNode(true));
@@ -77,26 +81,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('add-income').addEventListener('click', function() {
         const amount = parseFloat(document.getElementById('amount').value);
+        const description = descriptionInput.value;
         if (!isNaN(amount) && amount > 0) {
             updateBalance(amount);
-            addTransaction(amount, 'Ingreso');
+            addTransaction(amount, 'Ingreso', description);
         }
     });
 
     document.getElementById('add-expense').addEventListener('click', function() {
         const amount = parseFloat(document.getElementById('amount').value);
+        const description = descriptionInput.value;
         if (!isNaN(amount) && amount > 0) {
             updateBalance(-amount);
-            addTransaction(-amount, 'Egreso');
+            addTransaction(-amount, 'Egreso', description);
         }
     });
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('toggle-dark-mode');
-    toggleButton.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-    });
-});
 
     document.getElementById('update-budget').addEventListener('click', updateBudget);
 
@@ -121,11 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
 
+    document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+    });
+
     // Initialize UI
-    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
-    renderTransactions();
-    const savedBudget = parseFloat(localStorage.getItem('budget')) || 0;
-    const savedGoal = parseFloat(localStorage.getItem('goal')) || 0;
-    budgetInput.value = savedBudget;
-    goalInput.value = savedGoal;
-});
+    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', {
