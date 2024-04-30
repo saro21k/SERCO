@@ -115,11 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
         allTransactionList.removeAttribute('style');
     });
 
+    document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
+
     // Initialize UI
     balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
     renderTransactions();
     const savedBudget = parseFloat(localStorage.getItem('budget')) || 0;
     const savedGoal = parseFloat(localStorage.getItem('goal')) || 0;
     budgetInput.value = savedBudget;
-    goalInput.value = savedGoal;
-});
+    goalInput.value = saved
