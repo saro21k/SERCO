@@ -3,27 +3,38 @@ body {
     color: #ffd700; /* Dorado */
     font-family: 'Roboto', sans-serif; /* Cambiar a la fuente Roboto */
     padding: 10px;
+    transition: background-color 0.3s; /* Agregar animación */
 }
 
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px; /* Bordes redondeados */
     background: linear-gradient(135deg, rgba(0, 255, 0, 0.5), rgba(57, 61, 58, 0.8)); /* Fondo verde con degradado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    transition: box-shadow 0.3s; /* Agregar animación */
+}
+
+.container:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
 }
 
 /* Título principal
 ----------------------------------------------------------------------------------------------------------------------------------*/
 #main-title {
     text-align: center; /* Centrar el título */
+    font-size: 36px; /* Aumentar tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 20px; /* Agregar espacio entre el título y el contenido */
 }
 
 /* Encabezados
 ----------------------------------------------------------------------------------------------------------------------------------*/
 h1, h2 {
     text-align: center;
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Agregar espacio entre los encabezados y el contenido */
 }
 
 /* Botones
@@ -44,6 +55,11 @@ button:hover {
     background-color: #777; /* Verde oscuro al pasar el mouse */
     color: #fff; /* Blanco al pasar el mouse */
     transform: scale(1.05); /* Agrandar ligeramente al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
+}
+
+button:active {
+    transform: scale(0.95); /* Reducir ligeramente al presionar el botón */
 }
 
 /* Entradas de número
@@ -53,11 +69,13 @@ input[type="number"] {
     border-radius: 5px;
     border: 1px solid #ffd700; /* Dorado */
     background-color: rgba(255, 255, 255, 0.5); /* Blanco con transparencia */
+    transition: border-color 0.3s; /* Agregar animación */
 }
 
 input[type="number"]:focus {
     outline: none;
     border-color: #fff; /* Blanco al enfocar */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave al enfocar */
 }
 
 /* Balance
@@ -66,6 +84,7 @@ input[type="number"]:focus {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px; /* Aumentar tamaño de fuente */
+    font-weight: bold; /* Negrita */
 }
 
 /* Transacciones
@@ -98,7 +117,11 @@ input[type="number"]:focus {
 /* Media queries
 ----------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 768px) {
-    .container {
+   .container {
         max-width: 90%;
+    }
+
+    h1, h2 {
+        font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
     }
 }
