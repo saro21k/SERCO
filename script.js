@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addTransaction(amount, type) {
         const description = descriptionInput.value.trim();
-        transactions.push({ amount, type, description });
+        const transaction = { amount, type, description };
+        transactions.push(transaction);
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -51,23 +52,44 @@ document.addEventListener('DOMContentLoaded', function() {
         // Invertimos las transacciones para mostrar la más reciente primero
         const reversedTransactions = [...transactions].reverse();
 
-        reversedTransactions.forEach(transaction => {
+        reversedTransactions.forEach((transaction, index) => {
             const tr = document.createElement('tr');
             const tdType = document.createElement('td');
             const tdAmount = document.createElement('td');
             const tdDescription = document.createElement('td');
+            const tdDelete = document.createElement('td');
+            const deleteButton = document.createElement('button');
 
             tdType.textContent = transaction.type;
             tdAmount.textContent = transaction.amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
             tdDescription.textContent = transaction.description;
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'btn btn-danger';
+            deleteButton.onclick = function() {
+                deleteTransaction(index);
+            };
 
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
             tr.appendChild(tdDescription);
+            tdDelete.appendChild(deleteButton);
+            tr.appendChild(tdDelete);
 
             transactionList.appendChild(tr);
             allTransactionList.appendChild(tr.cloneNode(true));
         });
+    }
+
+    function deleteTransaction(index) {
+        const transaction = transactions[transactions.length - 1 - index];
+        if (transaction.type === 'Ingreso') {
+            updateBalance(-transaction.amount);
+        } else if (transaction.type === 'Egreso') {
+            updateBalance(transaction.amount);
+        }
+        transactions.splice(transactions.length - 1 - index, 1);
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+        renderTransactions();
     }
 
     function deleteAllTransactions() {
