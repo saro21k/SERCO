@@ -1,10 +1,10 @@
+/* Estilo general */
 body {
     background: linear-gradient(135deg, rgba(144, 238, 144, 1) 0%, rgba(100, 200, 100, 1) 100%);
-    /* Fondo degradado verde claro */
-    color: #333; /* Texto negro */
-    font-family: 'Montserrat', sans-serif; /* Fuente Montserrat */
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
     padding: 20px;
-    transition: background-color 0.3s; /* Animación de fondo */
+    transition: background-color 0.3s;
 }
 
 main {
@@ -12,85 +12,78 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
-    border-radius: 20px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
-    transition: box-shadow 0.3s; /* Animación de sombra */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s;
 }
 
 main:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Animación de sombra al pasar el mouse */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Título principal
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Título principal */
 #main-title {
-    text-align: center; /* Centrar el título */
-    font-size: 36px; /* Aumentar tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    margin-bottom: 20px; /* Agregar espacio entre el título y el contenido */
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-/* Encabezados
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Encabezados */
 h1, h2 {
     text-align: center;
-    font-weight: bold; /* Negrita */
-    margin-bottom: 10px; /* Agregar espacio entre los encabezados y el contenido */
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-/* Botones
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Botones */
 button {
-    background-color: #4CAF50; /* Verde */
-    color: #fff; /* Blanco */
+    background-color: #4CAF50;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 20px; /* Bordes redondeados */
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Agregar animación */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
-    background-color: #777; /* Verde oscuro al pasar el mouse */
-    color: #fff; /* Blanco al pasar el mouse */
-    transform: scale(1.05); /* Agrandar ligeramente al pasar el mouse */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
+    background-color: #45A049;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 button:active {
-    transform: scale(0.95); /* Reducir ligeramente al presionar el botón */
+    transform: scale(0.95);
 }
 
-/* Entradas de número
-----------------------------------------------------------------------------------------------------------------------------------*/
-input[type="number"] {
+/* Entradas de número */
+input[type="number"], input[type="text"] {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #333; /* Bordes negros */
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
-    transition: border-color 0.3s; /* Agregar animación */
+    border: 1px solid #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s;
 }
 
-input[type="number"]:focus {
+input[type="number"]:focus, input[type="text"]:focus {
     outline: none;
-    border-color: #4CAF50; /* Verde al enfocar */
-    box-shadow:0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave al enfocar */
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Balance
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Balance */
 #balance {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 24px; /* Aumentar tamaño de fuente */
-    font-weight: bold; /* Negrita */
+    font-size: 24px;
+    font-weight: bold;
 }
 
-/* Transacciones
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Transacciones */
 #transactions {
     margin-top: 20px;
 }
@@ -110,14 +103,12 @@ input[type="number"]:focus {
     text-align: center;
 }
 
-/* Botones de presupuesto y meta
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Botones de presupuesto y meta */
 #update-budget, #update-goal {
-    margin-bottom: 10px; /* Agregar espacio entre los botones */
+    margin-bottom: 10px;
 }
 
-/* Media queries
-----------------------------------------------------------------------------------------------------------------------------------*/
+/* Media queries */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -127,8 +118,8 @@ input[type="number"]:focus {
         padding: 10px;
     }
 
-   h1, h2 {
-        font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
+    h1, h2 {
+        font-size: 24px;
     }
 }
 
@@ -166,14 +157,14 @@ body.dark-mode {
     transform: scale(0.95);
 }
 
-.dark-mode input[type="number"] {
+.dark-mode input[type="number"], .dark-mode input[type="text"] {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: #fff;
 }
 
-.dark-mode input[type="number"]:focus {
+.dark-mode input[type="number"]:focus, .dark-mode input[type="text"]:focus {
     border-color: #4CAF50;
-    box-shadow:0 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .dark-mode #balance {
@@ -195,4 +186,4 @@ body.dark-mode {
 
 .dark-mode #delete-all-transactions {
     color: #fff;
-    }
+}
