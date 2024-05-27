@@ -48,7 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
         transactionList.innerHTML = '';
         allTransactionList.innerHTML = '';
 
-        transactions.forEach(transaction => {
+        // Invertimos las transacciones para mostrar la más reciente primero
+        const reversedTransactions = [...transactions].reverse();
+
+        reversedTransactions.forEach(transaction => {
             const tr = document.createElement('tr');
             const tdType = document.createElement('td');
             const tdAmount = document.createElement('td');
