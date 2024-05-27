@@ -12,53 +12,52 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">My Lord King Sergio</a>
-        <button id="toggle-dark-mode" class="btn btn-secondary ml-auto">Modo Nocturno</button>
+        <button id="toggle-dark-mode">Modo Nocturno</button>
     </nav>
-    
-    <main class="container mt-4">
-        <div class="row mb-4">
+    <main class="container">
+        <div class="row">
             <div class="col-12">
                 <h1 id="balance" class="text-center">Balance: 0 COP</h1>
             </div>
         </div>
-        
-        <div class="row mb-4">
+
+        <div class="row">
             <div class="col-12 col-md-6">
                 <div id="budget-control" class="form-group">
                     <label for="budget">Presupuesto:</label>
                     <input type="number" id="budget" placeholder="Ingrese el presupuesto" class="form-control">
-                    <button id="update-budget" class="btn btn-primary mt-2">Actualizar Presupuesto</button>
+                    <button id="update-budget" class="btn btn-primary">Actualizar Presupuesto</button>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div id="goal-control" class="form-group">
                     <label for="goal">Meta de Dinero:</label>
                     <input type="number" id="goal" placeholder="Ingrese la meta" class="form-control">
-                    <button id="update-goal" class="btn btn-primary mt-2">Actualizar Meta</button>
+                    <button id="update-goal" class="btn btn-primary">Actualizar Meta</button>
                 </div>
             </div>
         </div>
-        
-        <div class="row mb-4">
+
+        <div class="row">
             <div class="col-12">
                 <h2 class="text-center">Control de Transacciones</h2>
             </div>
         </div>
-        
-        <div class="row mb-4">
+
+        <div class="row">
             <div class="col-12">
                 <div id="controls" class="form-group">
                     <label for="amount">Cantidad:</label>
-                    <input type="number" id="amount" placeholder="Ingrese la cantidad" class="form-control mb-2">
+                    <input type="number" id="amount" placeholder="Ingrese la cantidad" class="form-control">
                     <label for="description">Descripción:</label>
-                    <input type="text" id="description" placeholder="Ingrese una descripción" class="form-control mb-2">
+                    <input type="text" id="description" placeholder="Ingrese una descripción" class="form-control">
                     <button id="add-income" class="btn btn-success">Ingreso</button>
                     <button id="add-expense" class="btn btn-danger">Egreso</button>
                 </div>
             </div>
         </div>
-        
-        <div class="row mb-4">
+
+        <div class="row">
             <div class="col-12">
                 <div id="transactions">
                     <h3 class="text-center">Transacciones Realizadas</h3>
@@ -67,17 +66,19 @@
                             <tr>
                                 <th>Tipo</th>
                                 <th>Cantidad</th>
+                                <th>Descripción</th>
                             </tr>
                         </thead>
                         <tbody id="transaction-list"></tbody>
                     </table>
-                    <button id="view-all-transactions" class="btn btn-primary mt-2">Mostrar todas las Transacciones</button>
-                    <button id="hide-transactions" class="btn btn-secondary mt-2" style="display: none;">Ocultar Transacciones</button>
-                    <table id="all-transactions" class="table table-bordered table-striped mt-2" style="display: none;">
+                    <button id="view-all-transactions" class="btn btn-primary">Mostrar todas las Transacciones</button>
+                    <button id="hide-transactions" class="btn btn-secondary" style="display: none;">Ocultar Transacciones</button>
+                    <table id="all-transactions" class="table table-bordered table-striped" style="display: none;">
                         <thead>
                             <tr>
                                 <th>Tipo</th>
                                 <th>Cantidad</th>
+                                <th>Descripción</th>
                             </tr>
                         </thead>
                         <tbody id="all-transaction-list"></tbody>
@@ -85,14 +86,15 @@
                 </div>
             </div>
         </div>
-        
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <button id="delete-all-transactions" class="btn btn-danger">Eliminar Todas las Transacciones</button>
+
+        <div class="row">
+            <div class="col-12">
+                <div id="delete-transactions">
+                    <button id="delete-all-transactions" class="btn btn-danger">Eliminar Todas las Transacciones</button>
+                </div>
             </div>
         </div>
     </main>
-    
     <script src="script.js"></script>
 </body>
 </html>
