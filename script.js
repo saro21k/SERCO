@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
             addTransaction(amount, 'Ingreso');
             amountInput.value = '';
             descriptionInput.value = '';
+        } else {
+            alert('Por favor, introduce una cantidad válida.');
         }
     });
 
@@ -94,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
             addTransaction(-amount, 'Egreso');
             amountInput.value = '';
             descriptionInput.value = '';
+        } else {
+            alert('Por favor, introduce una cantidad válida.');
         }
     });
 
@@ -115,12 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('hide-transactions').addEventListener('click', function() {
         document.getElementById('all-transactions').style.display = 'none';
         document.getElementById('transaction-list').style.display = 'table';
-        document.getElementById('view-all-transactions').style.display = 'inline-block';
         document.getElementById('hide-transactions').style.display = 'none';
+        document.getElementById('view-all-transactions').style.display = 'inline-block';
     });
 
     document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
 
+    // Initialize UI
+    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
     renderTransactions();
-    updateBalance(0); // Para actualizar la visualización inicial del balance
+    const savedBudget = parseFloat(localStorage.getItem('budget')) || 0;
+    const savedGoal = parseFloat(localStorage.getItem('goal')) || 0;
+    budgetInput.value = savedBudget;
+    goalInput.value = savedGoal;
 });
