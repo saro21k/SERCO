@@ -1,9 +1,11 @@
+/* Estilos generales */
 body {
     background: linear-gradient(135deg, rgba(144, 238, 144, 1) 0%, rgba(100, 200, 100, 1) 100%);
-    color: #333;
-    font-family: 'Montserrat', sans-serif;
+    /* Fondo degradado verde claro */
+    color: #333; /* Texto negro */
+    font-family: 'Montserrat', sans-serif; /* Fuente Montserrat */
     padding: 20px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /* Animación de fondo */
 }
 
 main {
@@ -11,73 +13,79 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: box-shadow 0.3s;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    transition: box-shadow 0.3s; /* Animación de sombra */
 }
 
 main:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Animación de sombra al pasar el mouse */
 }
 
+/* Título principal */
 #main-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    text-align: center; /* Centrar el título */
+    font-size: 36px; /* Aumentar tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 20px; /* Agregar espacio entre el título y el contenido */
 }
 
+/* Encabezados */
 h1, h2 {
     text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Agregar espacio entre los encabezados y el contenido */
 }
 
+/* Botones */
 button {
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #4CAF50; /* Verde */
+    color: #fff; /* Blanco */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 20px;
+    border-radius: 20px; /* Bordes redondeados */
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Agregar animación */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave */
 }
 
 button:hover {
-    background-color: #777;
-    color: #fff;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #777; /* Verde oscuro al pasar el mouse */
+    color: #fff; /* Blanco al pasar el mouse */
+    transform: scale(1.05); /* Agrandar ligeramente al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al pasar el mouse */
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.95); /* Reducir ligeramente al presionar el botón */
 }
 
-input[type="number"], input[type="text"] {
+/* Entradas de número */
+input[type="number"] {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #333;
-    background-color: rgba(255, 255, 255, 0.8);
-    transition: border-color 0.3s;
+    border: 1px solid #333; /* Bordes negros */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco traslúcido */
+    transition: border-color 0.3s; /* Agregar animación */
 }
 
-input[type="number"]:focus, input[type="text"]:focus {
+input[type="number"]:focus {
     outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-color: #4CAF50; /* Verde al enfocar */
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave al enfocar */
 }
 
+/* Balance */
 #balance {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 24px; /* Aumentar tamaño de fuente */
+    font-weight: bold; /* Negrita */
 }
 
+/* Transacciones */
 #transactions {
     margin-top: 20px;
 }
@@ -97,10 +105,12 @@ input[type="number"]:focus, input[type="text"]:focus {
     text-align: center;
 }
 
+/* Botones de presupuesto y meta */
 #update-budget, #update-goal {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Agregar espacio entre los botones */
 }
 
+/* Media queries */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -110,27 +120,25 @@ input[type="number"]:focus, input[type="text"]:focus {
         padding: 10px;
     }
 
-    h1, h2 {
-        font-size: 24px;
+   h1, h2 {
+        font-size: 24px; /* Reducir tamaño de fuente en dispositivos móviles */
     }
 }
 
+/* Modo Nocturno */
 body.dark-mode {
     background: #333;
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode main {
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.dark-mode main:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode h1, .dark-mode h2 {
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode button {
@@ -141,25 +149,26 @@ body.dark-mode {
 
 .dark-mode button:hover {
     background-color: #4CAF50;
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode button:active {
     transform: scale(0.95);
 }
 
-.dark-mode input[type="number"], .dark-mode input[type="text"] {
+.dark-mode input[type="number"] {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
-.dark-mode input[type="number"]:focus, .dark-mode input[type="text"]:focus {
+.dark-mode input[type="number"]:focus {
     border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow:0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .dark-mode #balance {
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode #transactions {
@@ -168,7 +177,7 @@ body.dark-mode {
 
 .dark-mode #view-all-transactions, .dark-mode #hide-transactions {
     background-color: #777;
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
 
 .dark-mode #all-transactions {
@@ -176,5 +185,5 @@ body.dark-mode {
 }
 
 .dark-mode #delete-all-transactions {
-    color: #fff;
+    color: #fff; /* Cambiar color del texto a blanco */
 }
