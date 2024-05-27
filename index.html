@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">My Lord King Sergio</a>
-        <button id="toggle-dark-mode" class="btn btn-secondary">Modo Nocturno</button>
+        <button id="toggle-dark-mode">Modo Nocturno</button>
     </nav>
     <main class="container">
         <div class="row">
@@ -51,8 +51,8 @@
                     <input type="number" id="amount" placeholder="Ingrese la cantidad" class="form-control">
                     <label for="description">Descripción:</label>
                     <input type="text" id="description" placeholder="Ingrese una descripción" class="form-control">
-                    <button id="add-income" class="btn btn-success mt-2">Ingreso</button>
-                    <button id="add-expense" class="btn btn-danger mt-2">Egreso</button>
+                    <button id="add-income" class="btn btn-success">Ingreso</button>
+                    <button id="add-expense" class="btn btn-danger">Egreso</button>
                 </div>
             </div>
         </div>
@@ -67,6 +67,7 @@
                                 <th>Tipo</th>
                                 <th>Cantidad</th>
                                 <th>Descripción</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody id="transaction-list"></tbody>
