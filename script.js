@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     let balance = parseFloat(localStorage.getItem('balance')) || 0;
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
@@ -7,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const allTransactionList = document.getElementById('all-transaction-list');
     const budgetInput = document.getElementById('budget');
     const goalInput = document.getElementById('goal');
-    const toggleButton = document.getElementById('toggle-dark-mode');
+    const amountInput = document.getElementById('amount');
+    const descriptionInput = document.getElementById('description');
 
     function updateBalance(amount) {
         balance += amount;
@@ -16,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addTransaction(amount, type) {
-        transactions.push({ amount, type });
+        const description = descriptionInput.value.trim();
+        transactions.push({ amount, type, description });
         localStorage.setItem('transactions', JSON.stringify(transactions));
         renderTransactions();
     }
@@ -49,12 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const tr = document.createElement('tr');
             const tdType = document.createElement('td');
             const tdAmount = document.createElement('td');
+            const tdDescription = document.createElement('td');
 
             tdType.textContent = transaction.type;
             tdAmount.textContent = transaction.amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+            tdDescription.textContent = transaction.description;
 
             tr.appendChild(tdType);
             tr.appendChild(tdAmount);
+            tr.appendChild(tdDescription);
 
             transactionList.appendChild(tr);
             allTransactionList.appendChild(tr.cloneNode(true));
@@ -72,28 +78,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('add-income').addEventListener('click', function() {
-        const amount = parseFloat(document.getElementById('amount').value);
+        const amount = parseFloat(amountInput.value);
         if (!isNaN(amount) && amount > 0) {
             updateBalance(amount);
             addTransaction(amount, 'Ingreso');
-        } else {
-            alert('Por favor, introduce una cantidad válida.');
+            amountInput.value = '';
+            descriptionInput.value = '';
         }
     });
 
     document.getElementById('add-expense').addEventListener('click', function() {
-        const amount = parseFloat(document.getElementById('amount').value);
+        const amount = parseFloat(amountInput.value);
         if (!isNaN(amount) && amount > 0) {
             updateBalance(-amount);
             addTransaction(-amount, 'Egreso');
-        } else {
-            alert('Por favor, introduce una cantidad válida.');
+            amountInput.value = '';
+            descriptionInput.value = '';
         }
     });
 
+    const toggleButton = document.getElementById('toggle-dark-mode');
     toggleButton.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
-        localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
     });
 
     document.getElementById('update-budget').addEventListener('click', updateBudget);
@@ -101,28 +107,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('view-all-transactions').addEventListener('click', function() {
         document.getElementById('all-transactions').style.display = 'table';
-        transactionList.style.display = 'none';
+        document.getElementById('transaction-list').style.display = 'none';
         document.getElementById('view-all-transactions').style.display = 'none';
         document.getElementById('hide-transactions').style.display = 'inline-block';
     });
 
     document.getElementById('hide-transactions').addEventListener('click', function() {
         document.getElementById('all-transactions').style.display = 'none';
-        transactionList.style.display = 'table';
-        document.getElementById('hide-transactions').style.display = 'none';
+        document.getElementById('transaction-list').style.display = 'table';
         document.getElementById('view-all-transactions').style.display = 'inline-block';
+        document.getElementById('hide-transactions').style.display = 'none';
     });
 
     document.getElementById('delete-all-transactions').addEventListener('click', deleteAllTransactions);
 
-    // Initialize UI
-    balanceDisplay.textContent = 'Balance: ' + balance.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
     renderTransactions();
-    budgetInput.value = localStorage.getItem('budget') || '';
-    goalInput.value = localStorage.getItem('goal') || '';
-
-    // Set dark mode if previously enabled
-    if (localStorage.getItem('dark-mode') === 'true') {
-        document.body.classList.add('dark-mode');
-    }
+    updateBalance(0); // Para actualizar la visualización inicial del balance
 });
